@@ -1,10 +1,10 @@
 const fs = require("fs");
 
-const getNotes = function () {
+const getNotes = () => {
     return "Your notes...";
 };
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
     try {
         const notes = loadNotes();
         // notes.forEach((note) => {
@@ -20,7 +20,7 @@ const addNote = function (title, body) {
         console.log("Error", error);
     }
 };
-const removeNote = function (title) {
+const removeNote = (title) => {
     try {
         const notes = loadNotes();
         const notesToKeep = notes.filter((note) => title !== note.title);
@@ -35,12 +35,12 @@ const removeNote = function (title) {
     }
 };
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     const notesJSON = JSON.stringify(notes);
     fs.writeFileSync("notes.json", notesJSON);
 };
 
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync("notes.json");
         const dataJSON = dataBuffer.toString();
