@@ -1,9 +1,5 @@
 const fs = require("fs");
 
-const getNotes = () => {
-    const notes = loadNotes();
-};
-
 const readNote = (title) => {
     try {
         const notes = loadNotes();
