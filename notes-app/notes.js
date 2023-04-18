@@ -1,7 +1,22 @@
 const fs = require("fs");
 
 const getNotes = () => {
-    return "Your notes...";
+    const notes = loadNotes();
+};
+
+const readNote = (title) => {
+    try {
+        const notes = loadNotes();
+        const noteToRead = notes.find((note) => title === note.title);
+        if (!noteToRead) {
+            throw new Error("Title not found");
+        } else {
+            console.log("Title: ", noteToRead.title);
+            console.log("Body: ", noteToRead.body);
+        }
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const addNote = (title, body) => {
@@ -50,8 +65,20 @@ const loadNotes = () => {
         return [];
     }
 };
+
+const listNotes = () => {
+    const notes = loadNotes();
+    if (notes.length > 0) {
+        console.log("This are the note titles");
+        notes.map((note, idx) => console.log(`${idx + 1}- ${note.title}`));
+    } else {
+        console.log("There are no notes created!");
+    }
+};
 module.exports = {
     getNotes,
     addNote,
     removeNote,
+    listNotes,
+    readNote,
 };
