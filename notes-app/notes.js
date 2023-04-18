@@ -20,6 +20,20 @@ const addNote = function (title, body) {
         console.log("Error", error);
     }
 };
+const removeNote = function (title) {
+    try {
+        const notes = loadNotes();
+        const notesToKeep = notes.filter((note) => title !== note.title);
+
+        if (notesToKeep.length === notes.length)
+            throw new Error(`Note with title '${title}' not found`);
+
+        saveNotes(notesToKeep);
+        console.log("note was removed!");
+    } catch (error) {
+        console.log("Error", error);
+    }
+};
 
 const saveNotes = function (notes) {
     const notesJSON = JSON.stringify(notes);
@@ -39,4 +53,5 @@ const loadNotes = function () {
 module.exports = {
     getNotes,
     addNote,
+    removeNote,
 };
