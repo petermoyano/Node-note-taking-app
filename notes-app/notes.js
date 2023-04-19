@@ -21,6 +21,7 @@ const addNote = (title, body) => {
         // notes.forEach((note) => {
         //     if (note.title === title) throw new Error("Title already in use");
         // });
+
         const duplicateNotes = notes.filter((note) => title === note.title);
         if (duplicateNotes.length > 0) throw new Error("Title already in use");
 
@@ -72,7 +73,6 @@ const listNotes = () => {
     }
 };
 module.exports = {
-    getNotes,
     addNote,
     removeNote,
     listNotes,
